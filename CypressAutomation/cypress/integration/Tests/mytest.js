@@ -139,7 +139,7 @@ describe('My First Test', () => {
      })
 
  //Verify Duplicate OrderID assertion
- cy.on('window:alert',(msg)=>{
+/* cy.on('window:alert',(msg)=>{
       
   expect(msg).to.contains('order with same partner_order_id already exist.');
 })
@@ -148,6 +148,7 @@ describe('My First Test', () => {
         cy.get('input[type="file"]').attachFile(filepath)
         //cy.get('#file-submit').click()
        cy.wait(3000)
+       */
     cy.get('button[type=submit]').click()
     
    
