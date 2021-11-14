@@ -105,7 +105,7 @@ describe('My First Test', () => {
       .should('have.value','self_pickup')
     })
 
-    it.only('Place an Order', () => {
+    it('Place an Order', () => {
       
       cy.contains('Place an order').click()
       cy.contains('Partner order Id').type('Order2')
@@ -131,27 +131,21 @@ describe('My First Test', () => {
      //delete 1 item
      cy.get('button[aria-label=delete]').eq(1).click()
 
-     //Verify upload prescripton alert
-     cy.get('button[type=submit]').click()
-     cy.on('window:alert',(txt)=>{
-       
-       expect(txt).to.contains('Please upload prescription.');
-     })
+     
 
- //Verify Duplicate OrderID assertion
-/* cy.on('window:alert',(msg)=>{
-      
-  expect(msg).to.contains('order with same partner_order_id already exist.');
-})
      //attach prescription
      const filepath = 'images/evening.jfif'
         cy.get('input[type="file"]').attachFile(filepath)
         //cy.get('#file-submit').click()
        cy.wait(3000)
-       */
+       
     cy.get('button[type=submit]').click()
     
-   
+    //Verify Duplicate OrderID assertion
+cy.on('window:alert',(msg)=>{
+      
+  expect(msg).to.contains('order with same partner_order_id already exist.');
+})
 
     
 
