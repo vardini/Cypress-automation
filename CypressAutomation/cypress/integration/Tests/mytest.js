@@ -128,16 +128,21 @@ describe('My First Test', () => {
      .wait(4000)
      cy.get('div[style="display: inline-block;"]').type('Crocin 650mg Advance Tab 15{enter}')
 
-     //delete crocin
+     //delete 1 item
      cy.get('button[aria-label=delete]').eq(1).click()
 
-     //Verify Duplicate OrderID assertion
+     //Verify upload prescripton alert
      cy.get('button[type=submit]').click()
      cy.on('window:alert',(txt)=>{
        
        expect(txt).to.contains('Please upload prescription.');
      })
 
+ //Verify Duplicate OrderID assertion
+ cy.on('window:alert',(msg)=>{
+      
+  expect(msg).to.contains('order with same partner_order_id already exist.');
+})
      //attach prescription
      const filepath = 'images/evening.jfif'
         cy.get('input[type="file"]').attachFile(filepath)
@@ -145,11 +150,7 @@ describe('My First Test', () => {
        cy.wait(3000)
     cy.get('button[type=submit]').click()
     
-    //Verify Duplicate OrderID assertion
-    cy.on('window:alert',(txt)=>{
-      
-      expect(txt).to.contains('order with same partner_order_id already exist.');
-   })
+   
 
     
 
